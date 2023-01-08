@@ -13,7 +13,7 @@ class ServerBrowser():
 
     def remove_dull_servers(self):
         while not self.socket_close:
-            for server in self.known_servers:
+            for server in self.known_servers.copy():
                 if time.time()-self.known_servers[server]["time"] > 3:
                     self.known_servers.pop(server)
             time.sleep(1)

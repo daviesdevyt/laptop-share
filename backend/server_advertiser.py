@@ -16,7 +16,7 @@ class ServerAdvertiser():
     def start_server(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        threading.Thread(target=self.broadcast_server).start()
+        threading.Thread(target=self.broadcast_server, args=(sock,)).start()
 
     def broadcast_server(self, sock):
         while not self.socket_close:
