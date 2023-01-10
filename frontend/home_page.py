@@ -1,4 +1,3 @@
-import tkinter
 import customtkinter
 
 customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark
