@@ -1,5 +1,6 @@
-import tkinter
+from tkinter import PhotoImage, Button
 import customtkinter
+from PIL import Image, ImageTk
 
 customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark
 customtkinter.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
@@ -14,18 +15,25 @@ label_2 = customtkinter.CTkLabel(app, text='Share files to anybody connected on 
 label_2.pack(pady = 0)
 
 
-# TODO: MAKE PICTURE AS BUTTON 
-# def button_event():
-#     print("button pressed")
 
-# button = customtkinter.CTkButton(master=app,
-#                                  text="CTkButton",
-#                                  command=button_event,
-#                                  width=60,
-#                                  height=120,
-#                                  border_width=0,
-#                                  corner_radius=120)
-# button.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+send_btn_image = customtkinter.CTkImage(Image.open("assets\sendBtn.png"), size=(120, 120) ) # importing the send button 
+recieve_btn_image = customtkinter.CTkImage(Image.open("assets\\recvBtn.png"), size =(120, 120) ) # importing the recieve button 
+
+# command for the buttons; will be editted later
+def send():
+    print('You clicked the send button')
+
+def recieve():
+    print("You clicked the recieve button")
+
+
+send_button = customtkinter.CTkButton(app, text='',  image = send_btn_image, command=send, fg_color="transparent",hover_color=("orange"))
+send_button.pack(pady = 40)
+recieve_button = customtkinter.CTkButton(app, text='', image = recieve_btn_image, command=recieve,fg_color="transparent", hover_color=("purple"))
+recieve_button.pack(pady = 20)
+
+
 
 app.mainloop()
 
