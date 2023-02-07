@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laptop_share/pages/host_list_page.dart';
 import 'package:laptop_share/utils/app_colors.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,7 +24,13 @@ class HomePage extends StatelessWidget {
                 height: 70,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HostListPage()),
+                  );
+                },
                 child: Ink.image(
                   image: AssetImage(
                     "assets/images/send_btn.png",

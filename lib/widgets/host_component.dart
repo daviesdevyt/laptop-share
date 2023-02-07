@@ -13,16 +13,15 @@ class HostComponent extends StatelessWidget {
         child: Column(children: [
       MaterialButton(
         onPressed: () {},
-        color: Colors.blue,
+        color: AppStyles.primaryPurple,
         child: Text(
-          icon,
-          style: AppStyles.headlineStyle1,
-          overflow: TextOverflow.ellipsis,
+          icon.toUpperCase(),
+          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white)
         ),
         shape: CircleBorder(),
         height: 80,
       ),
-      Text(username, style: AppStyles.headlineStyle3, textAlign: TextAlign.center,)
+      Text(username, style: AppStyles.headlineStyle3, textAlign: TextAlign.center,overflow: TextOverflow.ellipsis,)
     ]));
   }
 }

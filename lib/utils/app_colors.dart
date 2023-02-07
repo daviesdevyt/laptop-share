@@ -1,12 +1,14 @@
 import "package:flutter/material.dart";
 
 class AppStyles {
-  static Color bgColor = Color.fromARGB(255, 55, 55, 55);
+  static Color bgColor = Color(0xFF2C2C2C);
   static Color textColor = Colors.white;
+  static Color primaryOrange = Color(0xFFFF8A00);
+  static Color primaryPurple = Color(0xFF923CFF);
   static TextStyle textStyle =
       TextStyle(fontSize: 16, color: textColor, fontWeight: FontWeight.w500);
   static TextStyle headlineStyle1 =
-      TextStyle(fontSize: 26, color: textColor, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 40, color: textColor, fontWeight: FontWeight.bold);
   static TextStyle headlineStyle2 =
       TextStyle(fontSize: 21, color: textColor, fontWeight: FontWeight.bold);
   static TextStyle headlineStyle3 = TextStyle(
