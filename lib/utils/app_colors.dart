@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 class AppStyles {
-  static Color bgColor = const Color(0x002C2C2C);
+  static Color bgColor = Color.fromARGB(255, 55, 55, 55);
   static Color textColor = Colors.white;
   static TextStyle textStyle =
       TextStyle(fontSize: 16, color: textColor, fontWeight: FontWeight.w500);
