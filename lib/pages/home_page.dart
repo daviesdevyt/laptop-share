@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laptop_share/pages/host_list_page.dart';
+import 'package:laptop_share/pages/host_server_page.dart';
 import 'package:laptop_share/utils/app_colors.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,7 +21,26 @@ class HomePage extends StatelessWidget {
                 style: AppStyles.headlineStyle4,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              const SizedBox(height: 70),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ServerWaitRoom()),
+                  );
+                },
+                borderRadius: BorderRadius.circular(40),
+                child: Ink.image(
+                  image: const AssetImage(
+                    "assets/images/send_btn.png",
+                  ),
+                  height: 100,
+                  width: 200,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(
                 height: 70,
               ),
               InkWell(
@@ -31,30 +51,13 @@ class HomePage extends StatelessWidget {
                         builder: (context) => const HostListPage()),
                   );
                 },
+                borderRadius: BorderRadius.circular(40),
                 child: Ink.image(
-                  image: AssetImage(
-                    "assets/images/send_btn.png",
-                  ),
+                  image: const AssetImage("assets/images/recieve_btn.png",),
                   height: 100,
                   width: 200,
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(40),
-              ),
-              SizedBox(
-                height: 70,
-              ),
-              InkWell(
-                onTap: () {},
-                child: Ink.image(
-                  image: AssetImage(
-                    "assets/images/recieve_btn.png",
-                  ),
-                  height: 100,
-                  width: 200,
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(40),
               ),
             ],
           ),
