@@ -9,7 +9,7 @@ class ServerAdvertiser {
   final cron = Cron();
 
   ServerAdvertiser() {
-    cron.schedule(Schedule.parse("*/2 * * * * *"), broadcastServer);
+    cron.schedule(Schedule.parse("*/1 * * * * *"), broadcastServer);
   }
 
   Future<void> broadcastServer() async {

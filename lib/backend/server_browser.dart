@@ -6,7 +6,7 @@ import 'package:cron/cron.dart';
 
 class ServerBrowser {
   late RawDatagramSocket socket;
-  List<Map> servers = [];
+  Map<String, dynamic> servers = {};
   final cron = Cron();
 
   Future<void> broadcastClient() async {
@@ -18,22 +18,21 @@ class ServerBrowser {
       var data = socket.receive();
       if (data != null) {
         Map<String, dynamic> serverInfo = json.decode(utf8.decode(data.data));
-        serverInfo["ip"] = data.address;
-        servers.add(serverInfo);
-        print("Received message: $serverInfo");
+        servers[data.address.address] = serverInfo;
+        // print("Received message: $serverInfo");
       }
     });
   }
 
   ServerBrowser() {
-    cron.schedule(Schedule.parse("*/2-3 * * * * *"), removeDullServers);
+    cron.schedule(Schedule.parse("*/3 * * * * *"), removeDullServers);
     broadcastClient();
   }
 
   void removeDullServers() {
-    for (int i = 0; i < servers.length; ++i) {
-      if (DateTime.now().millisecondsSinceEpoch - servers[i]["t"] > 3) {
-        servers.remove(servers[i]);
+    for (var server in servers.keys) {
+      if (DateTime.now().millisecondsSinceEpoch - servers[server]["t"] > 3000) {
+        servers.remove(server);
       }
     }
   }

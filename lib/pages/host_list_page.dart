@@ -12,22 +12,25 @@ class HostListPage extends StatefulWidget {
 }
 
 class _HostListPageState extends State<HostListPage> {
-  ServerBrowser serverBrowser = ServerBrowser();
+  final ServerBrowser _serverBrowser = ServerBrowser();
   List<Widget> servers = [];
 
   void refreshHosts() {
+    List<Widget> newList = [];
+    servers.clear();
+    for (var ip in _serverBrowser.servers.keys) {
+      newList.add(
+        HostComponent(username: _serverBrowser.servers[ip]["username"]));
+    }
     setState(() {
-      servers.clear();
-      serverBrowser.servers.forEach((server) {
-        servers.add(HostComponent(username: server["username"]));
-      });
+      servers = newList;
     });
   }
 
   final cron = Cron();
 
   _HostListPageState() {
-    cron.schedule(Schedule.parse('*/2-3 * * * * *'), refreshHosts);
+    cron.schedule(Schedule.parse('*/2 * * * * *'), refreshHosts);
   }
 
   @override
@@ -45,7 +48,8 @@ class _HostListPageState extends State<HostListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          serverBrowser.close();
+          cron.close();
+          _serverBrowser.close();
           Navigator.pop(context);
         },
         child: Icon(Icons.arrow_back_ios_new_rounded),

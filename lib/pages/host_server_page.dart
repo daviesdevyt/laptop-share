@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:laptop_share/backend/server_advertiser.dart';
 import 'package:laptop_share/utils/app_colors.dart';
-import 'package:laptop_share/widgets/load_component.dart';
+import 'package:lottie/lottie.dart';
 
 class ServerWaitRoom extends StatefulWidget {
   const ServerWaitRoom({super.key});
@@ -10,25 +11,27 @@ class ServerWaitRoom extends StatefulWidget {
 }
 
 class _ServerWaitRoomState extends State<ServerWaitRoom> {
-  int connectionCount = 0;
+  final ServerAdvertiser _serverAdvertiser = ServerAdvertiser();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 120),
+        margin: EdgeInsets.symmetric(vertical: 50),
         child: Center(
           child: Column(
             children: [
-              const LoadBar(),
-              SizedBox(height: 30),
-              Text("Devices Connected: $connectionCount",
-                  style: AppStyles.headlineStyle2),
+              Lottie.network(
+                  "https://assets1.lottiefiles.com/packages/lf20_pmqt2q8c.json"),
+              Text("Waiting for connections ...",
+                      style: AppStyles.headlineStyle2),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          _serverAdvertiser.close();
           Navigator.pop(context);
         },
         child: Icon(Icons.arrow_back_ios_new_rounded),
