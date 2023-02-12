@@ -19,7 +19,7 @@ class ServerBrowser {
       if (data != null) {
         Map<String, dynamic> serverInfo = json.decode(utf8.decode(data.data));
         servers[data.address.address] = serverInfo;
-        // print("Received message: $serverInfo");
+        print("Received message: $serverInfo");
       }
     });
   }
@@ -31,6 +31,7 @@ class ServerBrowser {
 
   void removeDullServers() {
     for (var server in servers.keys) {
+      print(DateTime.now().millisecondsSinceEpoch - servers[server]["t"]);
       if (DateTime.now().millisecondsSinceEpoch - servers[server]["t"] > 3000) {
         servers.remove(server);
       }
