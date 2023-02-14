@@ -1,8 +1,9 @@
 import 'dart:io';
-import 'dart:convert';
 import 'dart:async';
-
 import 'package:cron/cron.dart';
+import 'dart:convert';
+
+import 'package:laptop_share/backend/client.dart';
 
 class ServerBrowser {
   late RawDatagramSocket socket;
@@ -25,8 +26,8 @@ class ServerBrowser {
   }
 
   ServerBrowser() {
-    cron.schedule(Schedule.parse("*/3 * * * * *"), removeDullServers);
     broadcastClient();
+    cron.schedule(Schedule.parse("*/3 * * * * *"), removeDullServers);
   }
 
   void removeDullServers() {
@@ -35,6 +36,10 @@ class ServerBrowser {
         servers.remove(server);
       }
     }
+  }
+
+  void sendConnect(String ip) {
+    socket.send(utf8.encode("<connect>"), InternetAddress(ip), 3000);
   }
 
   void close() {

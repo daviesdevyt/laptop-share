@@ -19,8 +19,10 @@ class _HostListPageState extends State<HostListPage> {
     List<Widget> newList = [];
     servers.clear();
     for (var ip in _serverBrowser.servers.keys) {
-      newList.add(
-        HostComponent(username: _serverBrowser.servers[ip]["username"]));
+      newList.add(HostComponent(
+          username: _serverBrowser.servers[ip]["username"],
+          ip: ip,
+          server: _serverBrowser));
     }
     setState(() {
       servers = newList;
