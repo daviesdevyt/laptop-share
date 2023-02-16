@@ -40,10 +40,10 @@ class Server {
         print(currentFileName);
         return;
       }
-    } catch (e) {
-      print(e);
-    }
-    File file = File(currentFileName);
+    } catch (e) {}
+    File file = await File(
+            "C:\\Users\\${Platform.environment["username"]}\\Documents\\LaptopShare\\$currentFileName")
+        .create(recursive: true);
     sink = file.openWrite();
     sink.add(data);
   }

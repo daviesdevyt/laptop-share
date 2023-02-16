@@ -43,8 +43,7 @@ class _ServerWaitRoomState extends State<ServerWaitRoom> {
         child: Center(
           child: Column(
             children: [
-              Lottie.network(
-                  "https://assets1.lottiefiles.com/packages/lf20_pmqt2q8c.json"),
+              Lottie.asset("assets/lottie_anims/114586-wifi-connecting.json"),
               Text("Waiting for connections ...",
                   style: AppStyles.headlineStyle2),
             ],

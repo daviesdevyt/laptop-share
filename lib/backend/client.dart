@@ -22,18 +22,20 @@ class Client {
     );
   }
 
-  void _handleIncomingData(data) {
+  void _handleIncomingData(data) async {
     try {
       String text = utf8.decode(data);
-      if (text.substring(0, 6) == "<fname>") {
+      if (text.substring(0, 7) == "<fname>") {
         currentFileName = text.substring(7, text.length);
+        print(currentFileName);
+        return;
       }
-    } catch (e) {
-      print(e);
-      File file = File(currentFileName);
-      sink = file.openWrite();
-      sink.add(data);
-    }
+    } catch (e) {}
+    File file = await File(
+            "C:\\Users\\${Platform.environment["username"]}\\Documents\\LaptopShare\\$currentFileName")
+        .create(recursive: true);
+    sink = file.openWrite();
+    sink.add(data);
   }
 
   void sendFile(String path) async {

@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:laptop_share/utils/app_colors.dart';
 
@@ -18,8 +19,12 @@ class _ShareFilesPageState extends State<ShareFilesPage> {
         child: ElevatedButton(
           style: const ButtonStyle(
               padding: MaterialStatePropertyAll(EdgeInsets.all(20))),
-          child: Text("Click", style: AppStyles.headlineStyle2),
-          onPressed: () {},
+          child: Text("Select file", style: AppStyles.headlineStyle2),
+          onPressed: () async {
+            FilePickerResult? file = await FilePicker.platform.pickFiles();
+            if (file == null) return;
+            widget.server.sendFile(file.files.single.path.toString());
+          },
         ),
       ),
     );
