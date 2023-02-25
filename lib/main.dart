@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppStyles.bgColor
       ),
       home: const HomePage(),
-    );
+    );  
   }
 }
