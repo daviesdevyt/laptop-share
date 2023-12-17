@@ -23,14 +23,14 @@ class _ShareFilesPageState extends State<ShareFilesPage> {
     final result = await FilePicker.platform.pickFiles();
     if (result != null) {
       setState(() {
-        _file = result.files.first;
+        _file = result.files.single;
       });
     }
   }
 
   Future<void> _sendFile() async {
     if (_file == null) return;
-
+    widget.server.sendFile(_file!.path.toString());
     setState(() {
       _isSendingFile = true;
       _sendingStatus = 'Sending file...';

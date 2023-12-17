@@ -35,7 +35,8 @@ class Server {
   void _handleIncomingData(data) async {
     try {
       String text = utf8.decode(data);
-      if (text.substring(0, 7) == "<fname>") {
+      
+      if (text.startsWith("<fname>")) {
         currentFileName = text.substring(7, text.length);
         print(currentFileName);
         return;
@@ -53,7 +54,7 @@ class Server {
     List<int> data = await file.readAsBytes();
     for (var client in clients) {
       client.add(utf8.encode("<fname>${file.uri.pathSegments.last}"));
-      sleep(Duration(milliseconds: 500));
+      sleep(const Duration(milliseconds: 500));
       client.add(data);
       print('File sent successfully');
     }
